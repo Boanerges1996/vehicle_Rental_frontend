@@ -25,10 +25,10 @@ class Signup extends React.Component{
                 emailError:false,
                 passwordError:false,
                 confirmError:false,
-                passwordMatch:false
+                passwordMatchError:false
             }
         }
-        // this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
         this.changeFirstname = this.changeFirstname.bind(this)
         this.changeLastname = this.changeLastname.bind(this)
         this.changeUsername = this.changeUsername.bind(this)
@@ -68,6 +68,21 @@ class Signup extends React.Component{
         this.setState({
             email:e.target.value
         })
+        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        if(re.test((this.state.email).toLowerCase())){
+            this.setState({
+                Error:{
+                    emailError:false
+                }
+            })
+        }
+        else{
+            this.setState({
+                Error:{
+                    emailError:true
+                }
+            })
+        }
     }
     changePassword=e=>{
         this.setState({
@@ -80,7 +95,13 @@ class Signup extends React.Component{
         })
     }
 
-    ha
+
+    //This handles the form submission but first validates before it
+    handleSubmit=(e)=>{
+        e.preventDefault()
+
+        
+    }
    
     render(){
         return(
@@ -97,7 +118,7 @@ class Signup extends React.Component{
                     <div className="signupinput">
                         <Form as="form" onSubmit={this.handleSubmit}>
                             <Form.Group widths="equal">
-                                <Input fluid label="firtname" 
+                                <Form.Input fluid label="firstname" 
                                 placeholder="firstname..." 
                                 required  
                                 onChange={this.changeFirstname}
@@ -150,7 +171,7 @@ class Signup extends React.Component{
                                 onChange={this.changePassword}
                                 name="password"
                                 value={this.state.password}
-                                error={this.state.Error.passwordError}
+                                error={this.state.Error.passwordError || this.state.Error.passwordMatchError}
                                 />
                             </Form.Group>
                             <Form.Group widths="equal">

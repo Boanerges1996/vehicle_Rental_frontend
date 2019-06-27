@@ -1,0 +1,103 @@
+.wholelogin{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(54, 51, 51);
+    padding-top: 100px;
+}
+.actuallogin{
+    width: 500px;
+    height: 500px;
+}
+.mysizing{
+    width: 500px;
+    height: 500px;
+    text-align: left;
+    padding-top: 50px;
+}
+
+.loginName{
+    font-size: 50px;
+}
+.logininputsize{
+    width: 20px;
+    font-family: Arial,FontAwesom;
+}
+.loginheader{
+    width: 100%;
+    height: 40%;
+    text-align: center;
+    float: left;
+}
+.logininput{
+    width: 100%;
+    height: 60%;
+    float: left;
+    padding-left: 20%;
+}
+.Loginlogostyle{
+    width: 30%;
+    height: 50%;
+}
+
+
+@media screen and (max-width:790px){
+    .wholelogin{
+        width: 100vw;
+        height: 100vh;
+        background-color: rgb(54, 51, 51);
+        padding-top: 30px;
+    }
+    .actuallogin{
+        width: 100%;
+        height: 90%;
+    }
+    .mysizing{
+        width: 100%;
+        height: 80%;
+        text-align: left;
+        padding-top: 50px;
+    }
+}
+
+@media screen and (max-width:360px){
+    .wholelogin{
+        width: 100vw;
+        height: 100vh;
+        background-color: rgb(54, 51, 51);
+        padding-top: 60px   ;
+    }
+    .actuallogin{
+        width: 100%;
+        height: 500px;
+    }
+    .mysizing{
+        width: 100%;
+        height: 500px;
+        text-align: left;
+        padding-top: 50px;
+    }
+    
+ 
+
+}
+@media screen and (max-width:450px){
+    .wholelogin{
+        width: 100vw;
+        height: 100vh;
+        background-color: rgb(54, 51, 51);
+        padding-top: 60px;
+    }
+    .actuallogin{
+        width: 100%;
+        height: 500px;
+    }
+    .mysizing{
+        width: 100%;
+        height: 500px;
+        text-align: left;
+        padding-top: 100px;
+    }
+    
+ 
+
+}

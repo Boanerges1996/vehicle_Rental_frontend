@@ -1,0 +1,19 @@
+.Header{
+    width: 100%;
+    height: 750px;
+}
+.Headerimg{
+    size: contain;
+    width: 100%;
+    height: 80%;
+    
+}
+.mainHeader{
+    width: 100%;
+    height: 120px;
+    background-color: rgb(54, 51, 51);
+}
+.Description{
+    position: absolute;
+    z-index: 10;
+}

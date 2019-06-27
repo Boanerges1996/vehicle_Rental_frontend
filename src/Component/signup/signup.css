@@ -1,0 +1,81 @@
+.wholesignup{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(54, 51, 51);
+    padding-top: 100px;
+}
+.usingFontAwesome{
+    font-family: Arial, FontAwesome;
+}
+.signupsizing{
+    width: 650px;
+    height: 650px;
+    text-align: left;
+    padding-top: 50px;
+}
+.signupheader{
+    width: 100%;
+    height: 25%;
+    text-align: center;
+    float: left;
+}
+.signupinput{
+    width: 100%;
+    height: 60%;
+    float: left;
+    padding-left: 10%;
+}
+
+@media screen and (max-width:800px){
+    .wholesignup{
+        width: 100vw;
+        height: 100vh;
+        background-color: rgb(54, 51, 51);
+        padding-top:3px;
+    }
+    .signupsizing{
+        width: 80%;
+        height: 90%;
+        text-align: left;
+        padding-top: 50px;
+    }
+    .signupheader{
+        width: 100%;
+        height: 20%;
+        text-align: center;
+        float: left;
+    }
+    .signupinput{
+        width: 100%;
+        height: 60%;
+        float: left;
+        padding-left: 10%;
+    }
+}
+
+@media screen and (max-width:420px){
+    .wholesignup{
+        width: 100vw;
+        height: auto;
+        background-color: rgb(54, 51, 51);
+        padding-top: 0;
+    }
+    .signupsizing{
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        padding: 0;
+    }
+    .signupheader{
+        width: 100%;
+        height: 20%;
+        text-align: center;
+        float: left;
+    }
+    .signupinput{
+        width: 100%;
+        height: 70%;
+        float: left;
+        padding-left: 10%;
+    }
+}

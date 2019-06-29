@@ -7,6 +7,20 @@
   height: 40vmin;
   pointer-events: none;
 }
+/* Semantic UI changing styles USERPAGE HEADER*/
+.userpagelinks .ui.black.buttons .button {
+  background-color: rgb(241, 67, 3);
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+}
+.userpagelinks .ui.black.buttons .button:hover {
+  background-color: red;
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+}
+
 
 .App-header {
   background-color: #282c34;

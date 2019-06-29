@@ -68,21 +68,7 @@ class Signup extends React.Component{
         this.setState({
             email:e.target.value
         })
-        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        if(re.test((this.state.email).toLowerCase())){
-            this.setState({
-                Error:{
-                    emailError:false
-                }
-            })
-        }
-        else{
-            this.setState({
-                Error:{
-                    emailError:true
-                }
-            })
-        }
+       
     }
     changePassword=e=>{
         this.setState({
@@ -102,8 +88,13 @@ class Signup extends React.Component{
 
         
     }
+    invalidname=(message)=>{
+        message=<h6>hello</h6>
+    }
    
     render(){
+        let message = null;
+
         return(
             <div className="wholesignup">
                 <Label as="div" className="signupsizing">
@@ -118,14 +109,17 @@ class Signup extends React.Component{
                     <div className="signupinput">
                         <Form as="form" onSubmit={this.handleSubmit}>
                             <Form.Group widths="equal">
-                                <Form.Input fluid label="firstname" 
+                                <Form.Input fluid label="firstname"
                                 placeholder="firstname..." 
                                 required  
                                 onChange={this.changeFirstname}
                                 name="firstname"
                                 value={this.state.firtname}
                                 error={this.state.Error.firtnameError}
+                                pattern={/\w{3}/}
                                 />
+                                {message}
+                                
                 
                                 <Form.Input fluid label="lastname" 
                                 placeholder="lastname..." 
@@ -161,7 +155,8 @@ class Signup extends React.Component{
                                 onChange={this.changeEmail}
                                 value={this.state.email}
                                 error={this.state.Error.emailError}
-                                name="email"/>    
+                                name="email"
+                                title="invalid email"/>    
                             </Form.Group>
                             <Form.Group widths="equal">
                                 <Form.Input fluid label="password" 

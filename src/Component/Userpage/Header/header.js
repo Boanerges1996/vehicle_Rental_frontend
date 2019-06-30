@@ -1,14 +1,25 @@
 import React from 'react';
 import './header.css';
 import { Image, Button } from 'semantic-ui-react';
+import Userprofile from './userprofilemodal';
 
 
 export default class Header extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+
+        }
+    }
     render(){
         return(
             <div className="userpageheader">
+                {/* This only works when the width is below 645px the list*/} 
+                <div className="menuAt645" onClick={this.props.clickToShowMenu}>
+                    &#xf0c9;
+                </div>
                 <div className="userpagelogo">
-
+                    
                 </div>
                 <div className="userpagelinks">
                     <Button.Group size="large" color="black" fluid compact>
@@ -17,12 +28,17 @@ export default class Header extends React.Component{
                         <Button compact>Drivers</Button>
                         <Button compact>Driver Registration</Button>
                     </Button.Group>
-
+                </div>
+               {/* This only works when the width is below 645px LOGO*/} 
+                <div className="logoAt645">
+                    <Image src={require('./logo.png')} alt="logoAt645" className="logoAt645Style"/>
+                    <h6>Bermuda rentals</h6>
                 </div>
                 <div className="useravatar">
-                    <Image src={require('./avatar.jpg')} alt="useravatar" circular className="useravatarstyle"/>
+                    <Image src={require('./avatar.jpg')} alt="useravatar" circular className="useravatarstyle" onClick={this.props.clickAvatar}/>
 
                 </div>
+                {/* <Userprofile /> */}
             </div>
         )
     }

@@ -1,0 +1,71 @@
+.userprofilehead{
+    width: 200px;
+    height: 300px;
+    background-color: red;
+    position: absolute;
+    top:70px;
+    right:3px;
+}
+.userprofileavatar{
+    height: 45%;
+    width: 100%;
+    float: left;
+    background-color: whitesmoke;
+}
+.profileavatar{
+    height:100%;
+    width: 55%;
+    float: left;
+}
+.profileavatar:hover{
+    cursor: pointer;
+}
+.profileusername{
+    height: 100%;
+    width: 45%;
+    float: left;
+}
+.profileusername .first{
+    text-decoration: underline;
+    color: blue;
+    font-size: 12px;
+}
+.profileusername .first:hover{
+    cursor: pointer;
+}
+.profileusername .second{
+    font-size: 16px;
+}
+
+
+.useravatarSty{
+    width: 80%;
+    height: 90%;
+    padding-top: 10px;
+    border-radius: 50%;
+}
+
+
+/* The  second part of the div*/
+.userprofilecontent{
+    height: 55%;
+    width: 100%;
+    float: left;
+    background-color: orangered;
+}
+.profilesame{
+    padding-top: 8px;
+    height:40px;
+    float: left;
+    width: 100%;
+    border: 1px white solid;
+    font-size: 20px;
+    font-family: Arial,FontAwesome;
+    text-align: left;
+    padding-left: 3px;
+}
+.profilesame:hover{
+    background-color: rgb(15, 15, 15);
+    color: white;
+    cursor: pointer;
+}

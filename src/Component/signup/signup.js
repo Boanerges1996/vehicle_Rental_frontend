@@ -26,7 +26,8 @@ class Signup extends React.Component{
                 passwordError:false,
                 confirmError:false,
                 passwordMatchError:false
-            }
+            },
+
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.changeFirstname = this.changeFirstname.bind(this)
@@ -41,6 +42,9 @@ class Signup extends React.Component{
 
     }
     changeFirstname=e=>{
+        // if (e.target.value.length===0){
+        //     e.target.setCustomValidity("Please this field is required")
+        // }
         this.setState({
             firstname:e.target.value
         })
@@ -64,8 +68,7 @@ class Signup extends React.Component{
     changeEmail=e=>{
         this.setState({
             email:e.target.value
-        })
-       
+        })   
     }
     changePassword=e=>{
         this.setState({
@@ -78,7 +81,8 @@ class Signup extends React.Component{
         })
     }
 
-    //Validation function
+// This part works on validating the input before submission to the API
+// Validate FIRSTNAME
     validateFirst=()=>{
         let re = /^[a-zA-Z]+$/
         if (this.state.firstname.length===0){
@@ -89,6 +93,8 @@ class Signup extends React.Component{
         }
         
     }
+
+// Validate LASTNAME
     validateLast=()=>{
         let re = /^[a-zA-Z]+$/
         if(this.state.lastname.length===0){
@@ -98,38 +104,61 @@ class Signup extends React.Component{
             return re.test(this.state.lastname)
         }
     }
+
+// Validate USERNAME
     validateUsername=()=>{
         let re = /^[a-zA-Z]+$/
-        if(this.state.username===0){
+        if(this.state.username.length===0){
             return false
         }
         else if(this.state.username.length>0){
             return re.test(this.state.username)
         }
     }
+
+// Validate TELEPHONE NUMBER
     validateTelephone=()=>{
         let re = /^[0-9]+$/
-        if(this.state.telephone.telephone.length===0){
+        if(this.state.telephone.length===0){
             return false
         }
         else if (this.state.telephone.length>0){
             return re.test(this.state.telephone)
         }
     }
+
+
+// Validate EMAIL
     validateEmail =()=>{
         if(this.state.email.length===0){
-            return false
+            return true
+        }
+        else if(this.state.email.length>0){
+            let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return re.test(this.state.email)
         }
     }
+
+// Validate PASSWORD
     validatePassword = ()=>{
         if(this.state.password.length===0){
             return false
         }
         else if(this.state.password.length>0){
             if (this.state.password===this.state.confirm){
+                this.setState({
+                    Error:{
+                        passwordMatchError:false
+                    }
+                })
                 return true
             }
             else{
+                this.setState({
+                    Error:{
+                        passwordMatchError:true
+                    }
+                })
                 return false
             }
         }
@@ -142,11 +171,12 @@ class Signup extends React.Component{
             firstname:this.state.firstname,
             lastname:this.state.lastname,
             username:this.state.username,
+            othername:"",
             telephone:this.state.telephone,
             email:this.state.email,
             password:this.state.password
         }
-        if((this.validateFirst()) && (this.validateLast()) && (this.validatePassword())){
+        if((this.validateFirst()) && (this.validateLast()) && (this.validateUsername()) && (this.validateTelephone())&&(this.validateEmail()) && (this.validatePassword())){
             console.log(data)
         }
         else{
@@ -159,7 +189,13 @@ class Signup extends React.Component{
     }
    
     render(){
-        let message = null;
+        let passwordVal = null;
+        if(this.state.Error.passwordMatchError){
+            passwordVal = <span>password Mismatch</span>
+        }
+        else{
+            passwordVal = null
+        }
 
         return(
             <div className="wholesignup">
@@ -181,12 +217,9 @@ class Signup extends React.Component{
                                 onChange={this.changeFirstname}
                                 name="firstname"
                                 value={this.state.firtname}
-                                error={this.state.Error.firtnameError}
                                 pattern={"[a-zA-Z]+"}
                                 className="firstnameError"
                                 />
-                                {message}
-                                
                 
                                 <Form.Input fluid label="lastname" 
                                 placeholder="lastname..." 
@@ -194,8 +227,6 @@ class Signup extends React.Component{
                                 onChange={this.changeLastname}
                                 name="lastname"
                                 value={this.state.lastname}
-                                error={this.state.Error.lastnameError}
-                                pattern={"[a-zA-Z]+"}
                                 title="firtsname require"
                                 className="lastnameError"
                                 />
@@ -207,7 +238,6 @@ class Signup extends React.Component{
                                 onChange={this.changeUsername}
                                 name="othernames"
                                 value={this.state.username}
-                                error={this.state.Error.othernamesError}
                                 required
                                 />
                                 <Form.Input fluid label="telephone" 
@@ -216,8 +246,6 @@ class Signup extends React.Component{
                                 onChange={this.changeTelephone}
                                 name="telephone"
                                 value={this.state.telephone}
-                                error={this.state.Error.telephoneError}
-                                pattern={"[0-9]+$"}
                                 className="telephoneError"
                                 />
                             </Form.Group>
@@ -227,9 +255,10 @@ class Signup extends React.Component{
                                 type="email"
                                 onChange={this.changeEmail}
                                 value={this.state.email}
-                                error={this.state.Error.emailError}
-                                name="email"
-                                title="invalid email"/>    
+                                title="invalid email"
+                                className="signemail"
+                                required
+                                />    
                             </Form.Group>
                             <Form.Group widths="equal">
                                 <Form.Input fluid label="password" 
@@ -237,9 +266,10 @@ class Signup extends React.Component{
                                 required 
                                 type="password"
                                 onChange={this.changePassword}
-                                name="password"
                                 value={this.state.password}
+                                className="passwordVal"
                                 />
+                                {passwordVal}
                             </Form.Group>
                             <Form.Group widths="equal">
                                 <Form.Input fluid label="confirm password" 
@@ -249,7 +279,6 @@ class Signup extends React.Component{
                                 onChange={this.changeConfirm}
                                 name="confirm"
                                 value={this.state.confirm}
-                                error={this.state.Error.confirmError}
                                 />
                             </Form.Group>
                            

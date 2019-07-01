@@ -38,6 +38,20 @@
   border: red;
   box-shadow: 0 0 1px 1px red;
 }
+.signupinput .ui.form .equal.width.fields .field.signemail .ui.fluid.input input:not(:placeholder-shown):invalid{
+  border: red;
+  box-shadow: 0 0 1px 1px red;
+}
+.signupinput .ui.form .equal.width.fields .required.field.passwordVal{
+  margin-bottom: 4px;
+}
+
+.signupinput .ui.form .equal.width.fields span{
+  padding-top: 2px;
+  padding-left: 7px;
+  font-size: 10px;
+  color:red;
+}
 
 
 

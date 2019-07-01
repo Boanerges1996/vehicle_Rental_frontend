@@ -2,9 +2,10 @@ import React from 'react';
 import './header.css';
 import { Image, Button } from 'semantic-ui-react';
 import Userprofile from './userprofilemodal';
+import {connect} from "react-redux";
 
 
-export default class Header extends React.Component{
+class Header extends React.Component{
     constructor(props){
         super(props)
         this.state = {
@@ -31,11 +32,11 @@ export default class Header extends React.Component{
                 </div>
                {/* This only works when the width is below 645px LOGO*/} 
                 <div className="logoAt645">
-                    <Image src={require('./logo.png')} alt="logoAt645" className="logoAt645Style"/>
+                    <Image src={this.props.logo} alt="logoAt645" className="logoAt645Style"/>
                     <h6>Bermuda rentals</h6>
                 </div>
                 <div className="useravatar">
-                    <Image src={require('./avatar.jpg')} alt="useravatar" circular className="useravatarstyle" onClick={this.props.clickAvatar}/>
+                    <Image src={this.props.userAvatar} alt="useravatar" circular className="useravatarstyle" onClick={this.props.clickAvatar}/>
 
                 </div>
                 {/* <Userprofile /> */}
@@ -43,3 +44,13 @@ export default class Header extends React.Component{
         )
     }
 }
+
+
+const mapStoreToProps = state =>{
+    return {
+        userAvatar: state.userAvatar,
+        logo:state.logo
+    }
+}
+
+export default connect(mapStoreToProps)(Header)

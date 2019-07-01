@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header/header';
 import Userprofile from './Header/userprofilemodal';
 import Menulist from './Header/meulist/menulist';
+import Vehiclepage from './Vehiclepage/Vehiclepage';
 
 export default class Userpage extends React.Component{
     constructor(props){
@@ -41,6 +42,7 @@ export default class Userpage extends React.Component{
                 <Header clickAvatar={this.showProfile} clickToShowMenu={this.showMenu}/>
                 {userProfileModal}
                 {menuList}
+                <Vehiclepage />
             </div>
         )
     }

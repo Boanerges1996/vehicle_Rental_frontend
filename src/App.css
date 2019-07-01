@@ -26,6 +26,22 @@
 }
 
 
+.signupinput .ui.form .equal.width.fields .required.field.firstnameError .ui.fluid.input input:not(:placeholder-shown):invalid{
+  border: red;
+  box-shadow: 0 0 1px 1px red;
+}
+.signupinput .ui.form .equal.width.fields .required.field.lastnameError .ui.fluid.input input:not(:placeholder-shown):invalid{
+  border: red;
+  box-shadow: 0 0 1px 1px red;
+}
+.signupinput .ui.form .equal.width.fields .required.field.telephoneError .ui.fluid.input input:not(:placeholder-shown):invalid{
+  border: red;
+  box-shadow: 0 0 1px 1px red;
+}
+
+
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

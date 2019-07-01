@@ -2,7 +2,6 @@ import React from 'react';
 import Vehiclebodies from './Vehiclebodie';
 import './vehicleRentPage.css';
 import VehicleData from './vehicleRegistered.json';
-import Userpage from '../../Header/Userheader';
 
 
 
@@ -18,7 +17,7 @@ class Vehiclepage extends React.Component{
 
         return (
             <div className='VehicleRentPage'>
-                <Userpage />
+                
                 {VehicleData.map((postDetail,index)=>{
                     return <Vehiclebodies imageUrl={postDetail.imageUrl} 
                     CompanyName={postDetail.companyName} location={postDetail.location} 

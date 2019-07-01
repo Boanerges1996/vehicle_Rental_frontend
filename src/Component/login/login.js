@@ -1,6 +1,7 @@
 import React from 'react';
 import './login.css';
 import { Label, Form, Input ,Image, Header, Button} from 'semantic-ui-react';
+import {connect} from 'react-redux';
 
 
 
@@ -14,7 +15,7 @@ class Login extends React.Component{
 
                 <Label as="div" className="mysizing">
                     <div className="loginheader">
-                        <img src={require("./logo.png")}  alt="Bermuda Rental" size="1" className="Loginlogostyle"/><br />
+                        <img src={this.props.logo}  alt="Bermuda Rental" size="1" className="Loginlogostyle"/><br />
                         <Label size="massive">
                             Bermuda Rentals
                             <h5>Login to enjoy our wonderful vehicle rental service</h5>
@@ -45,4 +46,10 @@ class Login extends React.Component{
         )
     }
 }
-export default Login;
+
+const mapStoreToProps = state =>{
+    return {
+        logo:state.logo
+    }
+}
+export default connect(mapStoreToProps)(Login);

@@ -1,6 +1,7 @@
 import React from 'react';
 import './signup.css';
 import {Form ,Label,Button,Input} from 'semantic-ui-react';
+import {connect} from "react-redux";
 
 
 
@@ -8,9 +9,8 @@ class Signup extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            firtname:"",
+            firstname:"",
             lastname:"",
-            othernames:"",
             username:"",
             telephone:"",
             email:"",
@@ -32,16 +32,17 @@ class Signup extends React.Component{
         this.changeFirstname = this.changeFirstname.bind(this)
         this.changeLastname = this.changeLastname.bind(this)
         this.changeUsername = this.changeUsername.bind(this)
-        this.changeOthername = this.changeOthername.bind(this)
         this.changeTelephone = this.changeTelephone.bind(this)
         this.changeEmail = this.changeEmail.bind(this)
         this.changePassword = this.changePassword.bind(this)
         this.changeConfirm = this.changeConfirm.bind(this)
+        this.validateFirst = this.validateFirst.bind(this)
+        this.validateLast = this.validateLast.bind(this)
 
     }
     changeFirstname=e=>{
         this.setState({
-            firtname:e.target.value
+            firstname:e.target.value
         })
     }
     changeLastname=e=>{
@@ -49,11 +50,7 @@ class Signup extends React.Component{
             lastname:e.target.value
         })
     }
-    changeOthername=e=>{
-        this.setState({
-            othernames:e.target.value
-        })
-    }
+
     changeUsername=e=>{
         this.setState({
             username:e.target.value
@@ -81,11 +78,80 @@ class Signup extends React.Component{
         })
     }
 
+    //Validation function
+    validateFirst=()=>{
+        let re = /^[a-zA-Z]+$/
+        if (this.state.firstname.length===0){
+            return false
+        }
+        else if(this.state.firstname.length>0){
+            return re.test(this.state.firstname)
+        }
+        
+    }
+    validateLast=()=>{
+        let re = /^[a-zA-Z]+$/
+        if(this.state.lastname.length===0){
+            return false
+        }
+        else if (this.state.lastname.length>0){
+            return re.test(this.state.lastname)
+        }
+    }
+    validateUsername=()=>{
+        let re = /^[a-zA-Z]+$/
+        if(this.state.username===0){
+            return false
+        }
+        else if(this.state.username.length>0){
+            return re.test(this.state.username)
+        }
+    }
+    validateTelephone=()=>{
+        let re = /^[0-9]+$/
+        if(this.state.telephone.telephone.length===0){
+            return false
+        }
+        else if (this.state.telephone.length>0){
+            return re.test(this.state.telephone)
+        }
+    }
+    validateEmail =()=>{
+        if(this.state.email.length===0){
+            return false
+        }
+    }
+    validatePassword = ()=>{
+        if(this.state.password.length===0){
+            return false
+        }
+        else if(this.state.password.length>0){
+            if (this.state.password===this.state.confirm){
+                return true
+            }
+            else{
+                return false
+            }
+        }
+    }
+
 
     //This handles the form submission but first validates before it
     handleSubmit=(e)=>{
-        e.preventDefault()
-
+        let data = {
+            firstname:this.state.firstname,
+            lastname:this.state.lastname,
+            username:this.state.username,
+            telephone:this.state.telephone,
+            email:this.state.email,
+            password:this.state.password
+        }
+        if((this.validateFirst()) && (this.validateLast()) && (this.validatePassword())){
+            console.log(data)
+        }
+        else{
+            console.log('Invalid data')
+        }
         
     }
     invalidname=(message)=>{
@@ -99,7 +165,7 @@ class Signup extends React.Component{
             <div className="wholesignup">
                 <Label as="div" className="signupsizing">
                     <div className="signupheader">
-                        <img src={require("./logo.png")}  alt="Bermuda Rental" size="1" className="Loginlogostyle"/><br />
+                        <img src={this.props.logo}  alt="Bermuda Rental" size="1" className="Loginlogostyle"/><br />
                         <Label size="massive">
                             Bermuda Rentals
                             <h5>Sign up to enjoy our wonderful vehicle rental services</h5>
@@ -116,7 +182,8 @@ class Signup extends React.Component{
                                 name="firstname"
                                 value={this.state.firtname}
                                 error={this.state.Error.firtnameError}
-                                pattern={/\w{3}/}
+                                pattern={"[a-zA-Z]+"}
+                                className="firstnameError"
                                 />
                                 {message}
                                 
@@ -128,16 +195,20 @@ class Signup extends React.Component{
                                 name="lastname"
                                 value={this.state.lastname}
                                 error={this.state.Error.lastnameError}
+                                pattern={"[a-zA-Z]+"}
+                                title="firtsname require"
+                                className="lastnameError"
                                 />
                             </Form.Group>
 
                             <Form.Group widths="equal">
-                                <Form.Input fluid label="othernames" 
-                                placeholder="othernames..." 
-                                onChange={this.changeOthername}
+                                <Form.Input fluid label="username" 
+                                placeholder="username..." 
+                                onChange={this.changeUsername}
                                 name="othernames"
-                                value={this.state.othernames}
+                                value={this.state.username}
                                 error={this.state.Error.othernamesError}
+                                required
                                 />
                                 <Form.Input fluid label="telephone" 
                                 placeholder="telephone" 
@@ -146,6 +217,8 @@ class Signup extends React.Component{
                                 name="telephone"
                                 value={this.state.telephone}
                                 error={this.state.Error.telephoneError}
+                                pattern={"[0-9]+$"}
+                                className="telephoneError"
                                 />
                             </Form.Group>
                             <Form.Group widths="equal">
@@ -166,7 +239,6 @@ class Signup extends React.Component{
                                 onChange={this.changePassword}
                                 name="password"
                                 value={this.state.password}
-                                error={this.state.Error.passwordError || this.state.Error.passwordMatchError}
                                 />
                             </Form.Group>
                             <Form.Group widths="equal">
@@ -183,7 +255,9 @@ class Signup extends React.Component{
                            
                         </Form>
                         <br/>
-                        <Button className="loginbutton" color="green" onClick={this.handleSubmit}>Signup</Button> <br/><br/>
+                        <Button className="loginbutton" 
+                        color="green" 
+                        onClick={this.handleSubmit}>Signup</Button> <br/><br/>
                         <span>login if registered to rent a vehicle</span>
                         
                     </div>
@@ -194,4 +268,10 @@ class Signup extends React.Component{
         )
     }
 }
-export default Signup;
+
+const mapStoreToProp = state =>{
+    return {
+        logo:state.logo
+    }
+}
+export default connect(mapStoreToProp)(Signup);
